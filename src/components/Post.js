@@ -9,47 +9,55 @@ import Typography from '@material-ui/core/Typography'
 import red from '@material-ui/core/colors/red'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import ShareIcon from '@material-ui/icons/Share'
-import { makeStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/styles'
+import PropTypes from 'prop-types'
 
-const useStyles = makeStyles({
+const styles = theme => ({
+  card: {
+    width: 700,
+    margin: 20
+  },
   avatar: {
     backgroundColor: red[500]
-  },
-  card: {
-    maxWidth: 700,
-    margin: 20
   }
 })
 
-export default function Post () {  
-  const classes = useStyles()
-  return (
-    <Card className={classes.card}>
-      <CardHeader
-        avatar={
-          <Avatar className={classes.avatar} aria-label='Recipe'>
-            R
-          </Avatar>
-        }
-        title='Shrimp and Chorizo Paella'
-        subheader='September 14, 2016'
-      />
-      <CardContent>
-        <Typography variant='body2' color='textSecondary' component='p'>
-          This impressive paella is a perfect party dish and a fun meal to cook together with your
-          guests. Add 1 cup of frozen peas along with the mussels, if you like.
-        </Typography>
-      </CardContent>
+class Post extends React.Component {  
+  render () {  
+    const { classes } = this.props  
+    return (
+      <Card className={classes.card}>
+        <CardHeader
+          avatar={
+            <Avatar className={classes.avatar} aria-label='Recipe'>
+              {this.props.user[0]}
+            </Avatar>
+          }
+          title={this.props.user}
+          subheader={this.props.date}
+        />
+        <CardContent>
+          <Typography variant='body2' color='textSecondary' component='p'>
+            {this.props.content}
+          </Typography>
+        </CardContent>
 
-      <CardActions disableSpacing>
-        <IconButton aria-label='Add to favorites'>
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label='Share'>
-          <ShareIcon />
-        </IconButton>
-      </CardActions>
+        <CardActions disableSpacing>
+          <IconButton aria-label='Add to favorites'>
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label='Share'>
+            <ShareIcon />
+          </IconButton>
+        </CardActions>
 
-    </Card>
-  )
+      </Card>
+    )
+  }
 }
+
+Post.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(Post)
