@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import Post from './Post';
+import ProfilePost from './ProfilePost';
 
 class ProfilePosts extends React.Component {  
   render(){
@@ -22,7 +22,7 @@ class ProfilePosts extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error :(</p>;
-            return data.profileFeedForUser.map((object) => <Post user={object.idCreator} date={object.createdAt} content={object.content}/>)
+            return data.profileFeedForUser.map((object) => <ProfilePost user={object.idCreator} date={object.createdAt} content={object.content}/>)
         }}
       </Query>
     )
