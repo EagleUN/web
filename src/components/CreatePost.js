@@ -52,7 +52,7 @@ const CreatePost = (props) => {
           />
       </Grid>
       <Grid container justify='center'>
-        <Mutation mutation={CREATE_POST} variables={{ idCreator, content }}>
+        <Mutation mutation={CREATE_POST}>
           {postMutation => <Fab component={Link} to={`/home/${idCreator}`} className={classes.fab} onClick={postMutation}>
             <AddIcon /> 
           </Fab>}

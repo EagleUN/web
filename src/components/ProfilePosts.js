@@ -22,7 +22,7 @@ class ProfilePosts extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error :(</p>;
-            return data.profileFeedForUser.map((object) => <ProfilePost user={object.idCreator} date={object.createdAt} content={object.content}/>)
+            return data.profileFeedForUser.map((object) => <ProfilePost key={object.id} user={object.idCreator} date={object.createdAt} content={object.content}/>)
         }}
       </Query>
     )
