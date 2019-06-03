@@ -5,7 +5,7 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { Link } from 'react-router-dom'
 
-function SimpleMenu () {
+const SimpleMenu = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null)
 
   function handleClick (event) {
@@ -15,7 +15,7 @@ function SimpleMenu () {
   function handleClose () {
     setAnchorEl(null)
   }
-
+  const userId = props.id
   return (
     <div>
       <IconButton color='inherit' aria-label='Menu' aria-owns={anchorEl ? 'simple-menu' : undefined}
@@ -24,7 +24,7 @@ function SimpleMenu () {
         <MenuIcon />
       </IconButton>
       <Menu id='simple-menu' anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        <MenuItem onClick={handleClose} component={Link} to='/profile/60682681-24ac-4425-86d7-0d1604813dbf'>Profile</MenuItem>
+        <MenuItem onClick={handleClose} component={Link} to={`/profile/${userId}`}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>

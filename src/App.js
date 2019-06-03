@@ -17,8 +17,8 @@ function App () {
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <NavBar />
-          <Route exact path='/:id' component={Home} />
+          <NavBar id={'6b8cc5c8-72bd-48b2-bbe6-efc536e8f90f'}/>
+          <Route exact path='/home/:id' component={Home} />
           <Route exact path='/notifications' component={Notifications} />
           <Route exact path='/profile/:id' component={Profile} />
         </div>
