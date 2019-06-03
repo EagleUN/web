@@ -1,13 +1,14 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
-import StyledPost from './Post'
+import HomePosts from './HomePosts';
 
 class Home extends React.Component {
   render () {
+    const userId = this.props.match.params.id
     return (
       <div>
         <Grid container justify='center'>
-          <StyledPost />
+          <HomePosts id={userId}/>
         </Grid>
       </div>
     )

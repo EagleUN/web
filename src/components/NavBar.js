@@ -18,16 +18,17 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function ButtonAppBar () {
+const ButtonAppBar = (props) => {
   const classes = useStyles()
+  const userId = props.id
   return (
     <div className={classes.root}>
       <AppBar position='static'>
         <Toolbar>
-          <Button color='inherit' component={Link} to='/'>Home</Button>
+          <Button color='inherit' component={Link} to={`/home/${userId}`}>Home</Button>
           <Button color='inherit' component={Link} to='/notifications'>Notifications</Button>
           <div className={classes.optionsButton}>
-            <OptionsMenu />
+            <OptionsMenu id={userId}/>
           </div>
         </Toolbar>
       </AppBar>
