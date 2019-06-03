@@ -27,6 +27,7 @@ const ButtonAppBar = (props) => {
         <Toolbar>
           <Button color='inherit' component={Link} to={`/home/${userId}`}>Home</Button>
           <Button color='inherit' component={Link} to='/notifications'>Notifications</Button>
+          <Button color='inherit' component={Link} to={`/post/${userId}`}>Post</Button>
           <div className={classes.optionsButton}>
             <OptionsMenu id={userId}/>
           </div>
