@@ -24,7 +24,7 @@ function ButtonAppBar () {
     <div className={classes.root}>
       <AppBar position='static'>
         <Toolbar>
-          <Button color='inherit' component={Link} to='/'>Home</Button>
+          <Button color='inherit' component={Link} to='/60682681-24ac-4425-86d7-0d1604813dbf'>Home</Button>
           <Button color='inherit' component={Link} to='/notifications'>Notifications</Button>
           <div className={classes.optionsButton}>
             <OptionsMenu />

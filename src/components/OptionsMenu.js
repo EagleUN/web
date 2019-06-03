@@ -24,7 +24,7 @@ function SimpleMenu () {
         <MenuIcon />
       </IconButton>
       <Menu id='simple-menu' anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        <MenuItem onClick={handleClose} component={Link} to='/profile'>Profile</MenuItem>
+        <MenuItem onClick={handleClose} component={Link} to='/profile/60682681-24ac-4425-86d7-0d1604813dbf'>Profile</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>
