@@ -10,7 +10,7 @@ import CardContent from '@material-ui/core/CardContent'
 
 const styles = theme => ({
   card: {
-    width: 200,
+    width: 400,
     margin: 20
   },
   avatar: {
