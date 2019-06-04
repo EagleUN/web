@@ -5,10 +5,10 @@ import UserNotifications from './UserNotifications';
 
 class Notifications extends React.Component {
   render () {
-    const userId = this.props.match.params.id
+    const userId = this.props.id || this.props.match.params.id
     return (
       <div>
-        <NavBar id={id} />
+        <NavBar id={userId} />
         <Grid container justify='center'>
           <UserNotifications id={userId}/>
         </Grid>
