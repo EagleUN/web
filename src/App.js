@@ -21,7 +21,7 @@ function App () {
         <div>
           <NavBar id={'6b8cc5c8-72bd-48b2-bbe6-efc536e8f90f'}/>
           <Route exact path='/home/:id' component={Home} />
-          <Route exact path='/notifications' component={Notifications} />
+          <Route exact path='/notifications/:id' component={Notifications} />
           <Route exact path='/profile/:id' component={Profile} />
           <Route exact path='/post/:id' component={CreatePost} />
           <Route exact path='/users/:id' component={AllUsers} />
