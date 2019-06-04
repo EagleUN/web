@@ -9,7 +9,7 @@ const SearchUsers = (props) => {
     <Query
         query={gql`
         {
-            userList(userId: "6b8cc5c8-72bd-48b2-bbe6-efc536e8f90f") {
+            userList(userId: "${userId}") {
               otherUsers{
                 name
                 lastName

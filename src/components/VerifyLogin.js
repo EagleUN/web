@@ -7,12 +7,12 @@ import Login from './Login'
 class VerifyLogin extends React.Component {  
   render(){
     const email = this.props.match.params.email
-    const pass = this.props.match.params.pass
+    const pass = this.props.match.params.password
     return(
       <Query
         query={gql`
         {
-            UserSess(user:{
+            userSess(user:{
               email: "${email}"
               password: "${pass}"
             }){
@@ -25,8 +25,8 @@ class VerifyLogin extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>
           if (error) return <Login />
-            if(data.UserSess.session) {
-              return <Home id={data.UserSess.id}/>
+            if(data.userSess.session) {
+              return <Home id={data.userSess.id}/>
             }
             return <Login />
         }}
