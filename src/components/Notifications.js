@@ -4,7 +4,7 @@ import UserNotifications from './UserNotifications';
 
 class Notifications extends React.Component {
   render () {
-    const userId = "77bd2e0f-50fe-4c58-9800-1db11035ef64"
+    const userId = "6b8cc5c8-72bd-48b2-bbe6-efc536e8f90f"
     return (
       <div>
         <Grid container justify='center'>
