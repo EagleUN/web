@@ -8,8 +8,6 @@ class VerifyLogin extends React.Component {
   render(){
     const email = this.props.match.params.email
     const pass = this.props.match.params.pass
-    console.log(email)
-    console.log(pass)
     return(
       <Query
         query={gql`
