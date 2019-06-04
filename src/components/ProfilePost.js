@@ -2,16 +2,10 @@ import React from 'react'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import CardContent from '@material-ui/core/CardContent'
-import CardActions from '@material-ui/core/CardActions'
 import Avatar from '@material-ui/core/Avatar'
-import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
 import red from '@material-ui/core/colors/red'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import { Mutation } from 'react-apollo'
-import gql from 'graphql-tag'
-import { Link } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -23,26 +17,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Post = (props) => {   
+const ProfilePost = (props) => {  
   const classes = useStyles()
   const user = props.user
   const date = props.date
   const content = props.content
-  const postId = props.postId
-  const userId = props.userId
-
-
-  const SHARE_POST = gql`
-    mutation {
-      createShare(share: {
-        userId: "${userId}"
-        postId: "${postId}"
-      }){
-        userId
-      }
-    }
-  `;
-
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -59,16 +38,8 @@ const Post = (props) => {
           {content}
         </Typography>
       </CardContent>
-
-      <CardActions disableSpacing>
-      <Mutation mutation={SHARE_POST}>
-          {postMutation => <IconButton component={Link} to={`/home/${userId}`} aria-label='Add to favorites' className={classes.fab} onClick={postMutation}>
-            <FavoriteIcon />
-          </IconButton>}
-        </Mutation>
-      </CardActions>
     </Card>
   )
 }
 
-export default Post
+export default ProfilePost

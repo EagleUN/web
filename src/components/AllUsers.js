@@ -1,16 +1,16 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
-import HomePosts from './HomePosts'
+import SearchUsers from './SearchUsers'
 
-const Home = (props) => {  
+const AllUsers = (props) => {
   const userId = props.match.params.id
   return (
     <div>
       <Grid container justify='center'>
-        <HomePosts id={userId}/>
+        <SearchUsers id={userId} />
       </Grid>
     </div>
   )
 }
 
-export default Home
+export default AllUsers

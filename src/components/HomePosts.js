@@ -22,7 +22,7 @@ class HomePosts extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error :(</p>;
-            return data.homeFeedForUser.map((object) => <Post user={object.idCreator} date={object.createdAt} content={object.content}/>)
+            return data.homeFeedForUser.map((object) => <Post key={object.id} userId={userId} postId={object.id} user={object.idCreator} date={object.createdAt} content={object.content}/>)
         }}
         </Query>
     )
