@@ -7,12 +7,15 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom'
+import { FormText, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import logo from './../eagle.svg';
+import "./Signup.css";
 
 const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: 30,
     marginRight: 30,
-    width: 500,
+    width: 280,
   },
   fab: {
     marginTop: 20,
@@ -51,13 +54,14 @@ const SignUp = (props) => {
   };
 
   return (
-    <div>
+    <div className="Signup">
+      <img src={logo} className="App-logo" alt="logo" />
       <Grid container justify='center'>
         <Grid>
           <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
-            Name
+            <FormLabel>Name</FormLabel>
           </Typography>
-          <TextField
+          <FormControl
             id="userName"
             label=""
             value={values.name}
@@ -68,9 +72,9 @@ const SignUp = (props) => {
           </Grid>
           <Grid>
             <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
-              Last name
+              <FormLabel>Last name</FormLabel>
             </Typography>
-            <TextField
+            <FormControl
               id="userLastName"
               label=""
               value={values.lastName}
@@ -81,9 +85,9 @@ const SignUp = (props) => {
           </Grid>
           <Grid>
             <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
-              Email
+              <FormLabel>Email</FormLabel>
             </Typography>
-            <TextField
+            <FormControl
               id="userEmail"
               label=""
               value={values.email}
@@ -94,9 +98,9 @@ const SignUp = (props) => {
           </Grid>
           <Grid>
             <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
-              Password
+              <FormLabel>Password</FormLabel>
             </Typography>
-            <TextField
+            <FormControl
               id="userPassword"
               label=""
               type="password"
@@ -108,9 +112,9 @@ const SignUp = (props) => {
           </Grid>
           <Grid>
             <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
-              Password Confirmation
+              <FormLabel>Password Confirmation</FormLabel>
             </Typography>
-            <TextField
+            <FormControl
               id="userPasswordConfirmation"
               label=""
               type="password"

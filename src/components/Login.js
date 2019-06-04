@@ -5,12 +5,15 @@ import Grid from '@material-ui/core/Grid'
 import { Link } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
 import { Button } from '@material-ui/core'
+import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import "./Login.css";
+import logo from './../eagle.svg'
 
 const useStyles = makeStyles(theme => ({
   textField: {
     marginLeft: 30,
     marginRight: 30,
-    width: 200,
+    width: 280,
   },
   fab: {
     marginTop: 20,
@@ -33,43 +36,49 @@ const Login = (props) => {
   };
   
   return (
-    <div>
+    <div className="Login">
+      <img src={logo} className="App-logo" alt="logo" />
       <Grid container justify='center'>
-          <Grid>
-            <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
-              Email
-            </Typography>
-            <TextField
-              id="userEmail"
-              label=""
-              value={values.email}
-              onChange={handleChange('email')}
-              className={classes.textField}
-              margin="normal"
-            />
+          <form>  
+            <Grid>
+              <FormGroup controlId="email" size="large">
+                <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
+                  <FormLabel>Email</FormLabel>
+                </Typography>
+                <FormControl
+                  id="userEmail"
+                  label=""
+                  value={values.email}
+                  onChange={handleChange('email')}
+                  className={classes.textField}
+                  margin="normal"
+                />
+              </FormGroup>
+            </Grid>
+            <Grid>
+              <FormGroup controlId="email" size="large">
+                <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
+                  <FormLabel>Password</FormLabel>
+                </Typography>
+                <FormControl
+                  id="userPassword"
+                  label=""
+                  type="password"
+                  value={values.password}
+                  onChange={handleChange('password')}
+                  className={classes.textField}
+                  margin="normal"/>
+              </FormGroup>
+            </Grid>
+          <Grid className="Botns" container>
+            <Button component={Link} to={`/verifyLogin/${values.email}/${values.password}`} variant='contained' aria-label='Add to favorites' className={classes.fab} >
+                Submit
+            </Button>
+            <Button component={Link} to={'/signup'} variant='contained' aria-label='Add to favorites' className={classes.fab} >
+                Sign Up
+            </Button>
           </Grid>
-          <Grid>
-            <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
-              Password
-            </Typography>
-            <TextField
-              id="userPassword"
-              label=""
-              type="password"
-              value={values.password}
-              onChange={handleChange('password')}
-              className={classes.textField}
-              margin="normal"
-          />
-          </Grid>                        
-        <Grid container justify='center'>
-          <Button component={Link} to={`/verifyLogin/${values.email}/${values.password}`} variant='contained' aria-label='Add to favorites' className={classes.fab} >
-              Submit
-          </Button>
-          <Button component={Link} to={'/signup'} variant='contained' aria-label='Add to favorites' className={classes.fab} >
-              Sign Up
-          </Button>
-        </Grid>
+        </form>
       </Grid>  
     </div>
   )

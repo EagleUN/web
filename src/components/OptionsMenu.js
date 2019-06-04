@@ -1,11 +1,22 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { Link } from 'react-router-dom'
 
+const useStyles = makeStyles(theme => ({
+  item: {
+    color: "black",
+    '&:hover': {
+      color: "orange"
+    }
+  }
+}))
+
 const SimpleMenu = (props) => {
+  const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
 
   function handleClick (event) {
@@ -24,8 +35,8 @@ const SimpleMenu = (props) => {
         <MenuIcon />
       </IconButton>
       <Menu id='simple-menu' anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        <MenuItem onClick={handleClose} component={Link} to={`/profile/${userId}`}>Profile</MenuItem>
-        <MenuItem component={Link} to={'/'}onClick={handleClose}>Logout</MenuItem>
+        <MenuItem className={classes.item} onClick={handleClose} component={Link} to={`/profile/${userId}`}>Profile</MenuItem>
+        <MenuItem className={classes.item} component={Link} to={'/'}onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>
   )
