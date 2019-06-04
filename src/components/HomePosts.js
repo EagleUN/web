@@ -9,7 +9,7 @@ class HomePosts extends React.Component {
     return (
       <Query
         query={gql`
-        {
+          {
             homeFeedForUser(id: "${userId}"){
               content
               id

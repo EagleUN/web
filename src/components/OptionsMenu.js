@@ -25,7 +25,7 @@ const SimpleMenu = (props) => {
       </IconButton>
       <Menu id='simple-menu' anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem onClick={handleClose} component={Link} to={`/profile/${userId}`}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem component={Link} to={'/'}onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>
   )
