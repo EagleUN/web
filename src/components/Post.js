@@ -11,6 +11,7 @@ import red from '@material-ui/core/colors/red'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -61,7 +62,7 @@ const Post = (props) => {
 
       <CardActions disableSpacing>
       <Mutation mutation={SHARE_POST}>
-          {postMutation => <IconButton aria-label='Add to favorites' className={classes.fab} onClick={postMutation}>
+          {postMutation => <IconButton component={Link} to={`/home/${userId}`} aria-label='Add to favorites' className={classes.fab} onClick={postMutation}>
             <FavoriteIcon />
           </IconButton>}
         </Mutation>
