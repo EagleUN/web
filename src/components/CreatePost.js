@@ -31,7 +31,7 @@ const CreatePost = (props) => {
     mutation {
       createPost(post: {
         idCreator: "${idCreator}"
-        content: "${content.multiline}"
+        content: "${content.content}"
       }) {
         id
       }
@@ -45,8 +45,8 @@ const CreatePost = (props) => {
             label="Write your post"
             multiline
             rowsMax="4"
-            value={content.multiline}
-            onChange={handleChange('multiline')}
+            value={content.content}
+            onChange={handleChange('content')}
             className={classes.textField}
             margin="normal"
           />
