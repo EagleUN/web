@@ -6,13 +6,14 @@ import CardActions from '@material-ui/core/CardActions'
 import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
 import red from '@material-ui/core/colors/red'
 import FavoriteIcon from '@material-ui/icons/Favorite'
-import ShareIcon from '@material-ui/icons/Share'
-import { withStyles } from '@material-ui/styles'
-import PropTypes from 'prop-types'
+import { Mutation } from 'react-apollo'
+import gql from 'graphql-tag'
+import { Link } from 'react-router-dom'
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   card: {
     width: 700,
     margin: 20
@@ -20,44 +21,34 @@ const styles = theme => ({
   avatar: {
     backgroundColor: red[500]
   }
-})
+}))
 
-class Noti extends React.Component {  
-  render () {  
-    const { classes } = this.props  
-    return (
-      <Card className={classes.card}>
-        <CardHeader
-          avatar={
-            <Avatar className={classes.avatar} aria-label='Recipe'>
-              {this.props.user[0]}
-            </Avatar>
-          }
-          title={this.props.user}
-          subheader={this.props.date}
-        />
-        <CardContent>
-          <Typography variant='body2' color='textSecondary' component='p'>
-            {this.props.content}
-          </Typography>
-        </CardContent>
+const Noti = (props) => {   
+  const classes = useStyles()
+  const user = props.user
+  const date = props.date
+  const type = props.type
+  const post_id = props.post
 
-        <CardActions disableSpacing>
-          <IconButton aria-label='Add to favorites'>
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label='Share'>
-            <ShareIcon />
-          </IconButton>
-        </CardActions>
+  return (
+    <Card className={classes.card}>
+      <CardHeader
+        avatar={
+          <Avatar className={classes.avatar} aria-label='Recipe'>
+            {user[0]}
+          </Avatar>
+        }
+        title={user}
+        subheader={date}
+      />
+      <CardContent>
+        <Typography variant='body2' color='textSecondary' component='p'>
+          {type == 'follow' ? "Te ha seguio ": "Te ha compartio el post # " + post_id}
+        </Typography>
+      </CardContent>
 
-      </Card>
-    )
-  }
+    </Card>
+  )
 }
 
-Noti.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
-export default withStyles(styles)(Noti)
+export default Noti

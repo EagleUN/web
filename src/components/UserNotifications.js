@@ -26,7 +26,7 @@ class UserNotifications extends React.Component {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error :(</p>;
             console.log(data)
-            return data.NotificationByUser.map((object) => <Post user={object.follower} date={object.date} content={object.type}/>)
+            return data.NotificationByUser.map((object) => <Noti user={object.follower} date={object.date} type={object.type} post={object.post_id}/>)
         }}
         </Query>
     )
