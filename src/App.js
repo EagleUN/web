@@ -1,5 +1,4 @@
 import React from 'react'
-import NavBar from './components/NavBar'
 import './App.css'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './components/Home'
@@ -26,7 +25,7 @@ function App () {
           <Route exact path='/verifyLogin/:email/:password' component={VerifyLogin} />
           <Route exact path='/signup/' component={SignUp} />
           <Route exact path='/home/:id' component={Home} />
-          <Route exact path='/notifications' component={Notifications} />
+          <Route exact path='/notifications/:id' component={Notifications} />
           <Route exact path='/profile/:id' component={Profile} />
           <Route exact path='/post/:id' component={CreatePost} />
           <Route exact path='/users/:id' component={AllUsers} />
