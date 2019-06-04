@@ -1,5 +1,4 @@
 import React from 'react'
-import NavBar from './components/NavBar'
 import './App.css'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './components/Home'
@@ -9,6 +8,9 @@ import CreatePost from './components/CreatePost'
 import AllUsers from './components/AllUsers'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
+import Login from './components/Login'
+import SignUp from './components/SignUp'
+import VerifyLogin from './components/VerifyLogin'
 
 const client = new ApolloClient({
   uri: 'http://35.232.95.82:5000/graphql'
@@ -18,8 +20,10 @@ function App () {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
-          <NavBar id={'6b8cc5c8-72bd-48b2-bbe6-efc536e8f90f'}/>
+        <div>          
+          <Route exact path='/' component={Login} />
+          <Route exact path='/verifyLogin/:email/:password' component={VerifyLogin} />
+          <Route exact path='/signup/' component={SignUp} />
           <Route exact path='/home/:id' component={Home} />
           <Route exact path='/notifications/:id' component={Notifications} />
           <Route exact path='/profile/:id' component={Profile} />
