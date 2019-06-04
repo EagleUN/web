@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Notifications from './components/Notifications'
 import Profile from './components/Profile'
 import CreatePost from './components/CreatePost'
+import AllUsers from './components/AllUsers'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
 
@@ -23,6 +24,7 @@ function App () {
           <Route exact path='/notifications' component={Notifications} />
           <Route exact path='/profile/:id' component={Profile} />
           <Route exact path='/post/:id' component={CreatePost} />
+          <Route exact path='/users/:id' component={AllUsers} />
         </div>
       </Router>
     </ApolloProvider>
