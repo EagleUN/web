@@ -13,7 +13,7 @@ import SignUp from './components/SignUp'
 import VerifyLogin from './components/VerifyLogin'
 
 const client = new ApolloClient({
-  uri: 'http://35.232.95.82:5000/graphql'
+  uri: 'http://35.232.95.82/graphql'
 })
 
 function App () {
