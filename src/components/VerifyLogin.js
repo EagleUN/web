@@ -12,7 +12,7 @@ class VerifyLogin extends React.Component {
       <Query
         query={gql`
         {
-            userSess(user:{
+            userSess2(user:{
               email: "${email}"
               password: "${pass}"
             }){
@@ -25,8 +25,8 @@ class VerifyLogin extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>
           if (error) return <Login />
-            if(data.userSess.session) {
-              return <Home id={data.userSess.id}/>
+            if(data.userSess2.session) {
+              return <Home id={data.userSess2.id}/>
             }
             return <Login />
         }}
