@@ -11,6 +11,7 @@ import { ApolloProvider } from 'react-apollo'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import VerifyLogin from './components/VerifyLogin'
+import AddMusic from './components/AddMusic'
 
 const client = new ApolloClient({
   uri: 'http://35.232.95.82/graphql'
@@ -29,6 +30,7 @@ function App () {
           <Route exact path='/profile/:id' component={Profile} />
           <Route exact path='/post/:id' component={CreatePost} />
           <Route exact path='/users/:id' component={AllUsers} />
+          <Route exact path='/addMusicLists/' component={AddMusic} />
         </div>
       </Router>
     </ApolloProvider>
