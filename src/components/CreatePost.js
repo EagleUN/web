@@ -8,6 +8,7 @@ import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add';
 import { Link } from 'react-router-dom'
 import NavBar from './NavBar'
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -17,6 +18,9 @@ const useStyles = makeStyles(theme => ({
   },
   fab: {
     marginTop: 20,
+  },
+  typo: {
+    marginTop: 20
   }
 }))
 
@@ -25,6 +29,7 @@ const CreatePost = (props) => {
   const [content, setContent] = React.useState({content: ""})
   const idCreator = localStorage.getItem('userID');
   const token = localStorage.getItem('Authorization');
+  const contenido = (props.contenido ? props.contenido : "")
 
   const handleChange = name => event => {
     setContent({[name]: event.target.value})
@@ -39,6 +44,18 @@ const CreatePost = (props) => {
       }
     }
   `;
+  
+  const getElementToRender = () => {
+    if(contenido !== ""){
+      return  <Typography className={classes.typo} variant='body2' color='textSecondary' component='p'>{contenido}</Typography>      
+    } else{
+      return  <Link to={{
+          pathname: `/addMusicLists`,
+          id: idCreator
+        }}>Get Music List</Link>
+    }
+  }
+
   return (
     <div>
       <NavBar id={idCreator}/>
@@ -48,7 +65,7 @@ const CreatePost = (props) => {
             label="Write your post"
             multiline
             rowsMax="4"
-            value={content.content}
+            value={content.content}                     
             onChange={handleChange('content')}
             className={classes.textField}
             margin="normal"
@@ -71,7 +88,10 @@ const CreatePost = (props) => {
           {postMutation => <Fab component={Link} to={`/home`} className={classes.fab} onClick={postMutation}>
             <AddIcon /> 
           </Fab>}
-        </Mutation>
+        </Mutation>        
+      </Grid>
+      <Grid container justify='center'>
+        {getElementToRender()}
       </Grid>
     </div>
   )

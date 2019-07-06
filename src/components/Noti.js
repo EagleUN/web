@@ -33,11 +33,11 @@ const Noti = (props) => {
           </Avatar>
         }
         title={user}
-        subheader={date}
+        subheader={date.substr(0,9)}
       />
       <CardContent>
         <Typography variant='body2' color='textSecondary' component='p'>
-          {type === 'follow' ? "Te ha seguio ": "Te ha compartio el post # " + post_id}
+          {type === 'follow' ? "followed you ": "shared your post: " + post_id}
         </Typography>
       </CardContent>
 
