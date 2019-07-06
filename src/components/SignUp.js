@@ -29,6 +29,7 @@ const SignUp = (props) => {
   const [values, setValues] = React.useState({
     name: "",
     lastName: "",
+    username: "",
     email: "",
     password: "",
     passwordConfirmation: "",
@@ -39,6 +40,7 @@ const SignUp = (props) => {
       createUser(user: {
         name: "${values.name}"
         last_name: "${values.lastName}"
+        username: "${values.username}"
         email: "${values.email}"
         password: "${values.password}"
         password_confirmation: "${values.passwordConfirmation}"
@@ -61,12 +63,13 @@ const SignUp = (props) => {
             <FormLabel>Name</FormLabel>
           </Typography>
           <FormControl
-            id="userName"
+            id="nameUser"
             label=""
             value={values.name}
             onChange={handleChange('name')}
             className={classes.textField}
             margin="normal"
+            autoFocus="autofocus"
           />
           </Grid>
           <Grid>
@@ -78,6 +81,19 @@ const SignUp = (props) => {
               label=""
               value={values.lastName}
               onChange={handleChange('lastName')}
+              className={classes.textField}
+              margin="normal"
+            />
+          </Grid>
+          <Grid>
+            <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
+              <FormLabel>User Name</FormLabel>
+            </Typography>
+            <FormControl
+              id="userName"
+              label=""
+              value={values.username}
+              onChange={handleChange('username')}
               className={classes.textField}
               margin="normal"
             />

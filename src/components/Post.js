@@ -30,6 +30,7 @@ const Post = (props) => {
   const content = props.content
   const postId = props.postId
   const userId = props.userId
+  const token = localStorage.getItem('Authorization');
 
 
   const SHARE_POST = gql`
@@ -61,8 +62,13 @@ const Post = (props) => {
       </CardContent>
 
       <CardActions disableSpacing>
-      <Mutation mutation={SHARE_POST}>
-          {postMutation => <IconButton component={Link} to={`/home/${userId}`} aria-label='Add to favorites' className={classes.fab} onClick={postMutation}>
+      <Mutation mutation={SHARE_POST}
+        context={{
+          headers: {
+            Authorization: token ? `Bearer ${token}` : ""
+          }
+        }}>
+          {postMutation => <IconButton component={Link} to={`/home`} aria-label='Add to favorites' className={classes.fab} onClick={postMutation}>
             <FavoriteIcon />
           </IconButton>}
         </Mutation>

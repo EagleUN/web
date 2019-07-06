@@ -10,7 +10,6 @@ import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
-import VerifyLogin from './components/VerifyLogin'
 import AddMusic from './components/AddMusic'
 
 const client = new ApolloClient({
@@ -23,13 +22,13 @@ function App () {
       <Router>
         <div>          
           <Route exact path='/' component={Login} />
-          <Route exact path='/verifyLogin/:email/:password' component={VerifyLogin} />
-          <Route exact path='/signup/' component={SignUp} />
-          <Route exact path='/home/:id' component={Home} />
-          <Route exact path='/notifications/:id' component={Notifications} />
+          <Route exact path='/signup' component={SignUp} />
+          <Route exact path='/home' component={Home} />
+          <Route exact path='/notifications' component={Notifications} />
+          <Route exact path='/profile' component={Profile} />
           <Route exact path='/profile/:id' component={Profile} />
-          <Route exact path='/post/:id' component={CreatePost} />
-          <Route exact path='/users/:id' component={AllUsers} />
+          <Route exact path='/post' component={CreatePost} />
+          <Route exact path='/users' component={AllUsers} />
           <Route exact path='/addMusicLists/' component={AddMusic} />
         </div>
       </Router>

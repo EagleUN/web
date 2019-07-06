@@ -7,6 +7,8 @@ import { Button } from '@material-ui/core'
 import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "./Login.css";
 import logo from './../eagle.svg'
+import { Mutation } from 'react-apollo'
+import gql from 'graphql-tag'
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -21,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   typo: {
     marginTop: 20
   }
-}))
+}));
 
 const Login = (props) => {  
   const classes = useStyles()
@@ -29,6 +31,19 @@ const Login = (props) => {
     email: "",
     password: "",
   })
+
+  const CREATE_TOKEN_SESSION = gql`
+    mutation {
+      createNewUserSession(user: {
+        email: "${values.email}",
+        password: "${values.password}"
+      }) 
+      {
+        jwt
+        id
+      }
+    }
+  `;
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
@@ -40,7 +55,7 @@ const Login = (props) => {
       <Grid container justify='center'>
           <form>  
             <Grid>
-              <FormGroup controlId="email" size="large">
+              <FormGroup size="large">
                 <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
                   <FormLabel>Email</FormLabel>
                 </Typography>
@@ -51,11 +66,12 @@ const Login = (props) => {
                   onChange={handleChange('email')}
                   className={classes.textField}
                   margin="normal"
+                  autoFocus="autofocus"
                 />
               </FormGroup>
             </Grid>
             <Grid>
-              <FormGroup controlId="email" size="large">
+              <FormGroup size="large">
                 <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
                   <FormLabel>Password</FormLabel>
                 </Typography>
@@ -70,9 +86,29 @@ const Login = (props) => {
               </FormGroup>
             </Grid>
           <Grid className="Botns" container>
-            <Button component={Link} to={`/verifyLogin/${values.email}/${values.password}`} variant='contained' aria-label='Add to favorites' className={classes.fab} >
+            <Mutation mutation={CREATE_TOKEN_SESSION}
+            onCompleted={
+              (data,errors) => {
+                if(data!==null){
+                  if(data.createNewUserSession.jwt !== "0"){
+                    localStorage.setItem("Authorization", data.createNewUserSession.jwt)
+                    localStorage.setItem("userID", data.createNewUserSession.id)
+                    window.location.reload()
+                  }
+                } else {
+                  if(data.createNewUserSession.errors.message === "0"){
+                  }
+                }
+                if(errors[0].message===0){
+                  alert("error en inicio de sesion")
+                }
+              }
+            }
+            >
+              {postMutation => <Button component={Link} to={'/home'} variant='contained' aria-label='Add to favorites' className={classes.fab} onClick={postMutation}>
                 Submit
-            </Button>
+              </Button>}
+            </Mutation>
             <Button component={Link} to={'/signup'} variant='contained' aria-label='Add to favorites' className={classes.fab} >
                 Sign Up
             </Button>
@@ -82,5 +118,4 @@ const Login = (props) => {
     </div>
   )
 }
-
 export default Login

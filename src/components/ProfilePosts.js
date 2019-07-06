@@ -5,7 +5,7 @@ import ProfilePost from './ProfilePost';
 
 class ProfilePosts extends React.Component {  
   render(){
-    const userId = this.props.id
+    const userId = localStorage.getItem('userID')
     return(
       <Query
         query={gql`

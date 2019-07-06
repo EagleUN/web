@@ -5,8 +5,15 @@ import gql from 'graphql-tag'
 
 const SearchUsers = (props) => {
   const userId = props.id
+  const token = localStorage.getItem('Authorization');
+  
   return (
     <Query
+      context={{
+        headers: {
+          Authorization: token ? `Bearer ${token}` : ""
+        }
+      }}
         query={gql`
         {
             userList(userId: "${userId}") {

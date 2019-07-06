@@ -38,10 +38,10 @@ const ButtonAppBar = (props) => {
         <Toolbar>
           <div className={classes.botns}>
             <img src={logo} className="App-logo-nav" alt="logo" />
-            <Button className={classes.butns} color='inherit' component={Link} to={`/home/${userId}`}>Home</Button>
-            <Button className={classes.butns} color='inherit' component={Link} to={`/notifications/${userId}`}>Notifications</Button>
-            <Button className={classes.butns} color='inherit' component={Link} to={`/post/${userId}`}>Post</Button>
-            <Button className={classes.butns} color='inherit' component={Link} to={`/users/${userId}`}>Users</Button>
+            <Button className={classes.butns} color='inherit' component={Link} to={`/home`}>Home</Button>
+            <Button className={classes.butns} color='inherit' component={Link} to={`/notifications`}>Notifications</Button>
+            <Button className={classes.butns} color='inherit' component={Link} to={`/post`}>New post</Button>
+            <Button className={classes.butns} color='inherit' component={Link} to={`/users`}>Users</Button>
           </div>
           <div className={classes.optionsButton}>
             <OptionsMenu id={userId}/>

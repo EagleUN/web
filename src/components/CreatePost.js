@@ -27,8 +27,9 @@ const useStyles = makeStyles(theme => ({
 const CreatePost = (props) => {  
   const classes = useStyles()
   const [content, setContent] = React.useState({content: ""})
-  const idCreator = props.id || props.match.params.id
-  const contenido = (props.contenido ? props.contenido : "")  
+  const idCreator = localStorage.getItem('userID');
+  const token = localStorage.getItem('Authorization');
+  const contenido = (props.contenido ? props.contenido : "")
 
   const handleChange = name => event => {
     setContent({[name]: event.target.value})
@@ -71,9 +72,21 @@ const CreatePost = (props) => {
           />
       </Grid>
       <Grid container justify='center'>
-        <Mutation mutation={CREATE_POST}>
-          {postMutation => <Fab component={Link} to={`/home/${idCreator}`} className={classes.fab} onClick={postMutation}>
-            <AddIcon />
+        <Mutation mutation={CREATE_POST} 
+          context={{
+            headers: {
+              Authorization: token ? `Bearer ${token}` : ""
+            }
+          }} 
+          onCompleted={
+            (data,errors) => {
+              if(data!==null){
+                window.location.reload()
+              }
+            }
+          }>
+          {postMutation => <Fab component={Link} to={`/home`} className={classes.fab} onClick={postMutation}>
+            <AddIcon /> 
           </Fab>}
         </Mutation>        
       </Grid>

@@ -5,10 +5,15 @@ import Noti from './Noti'
 
 class UserNotifications extends React.Component {
   render() {
-    const userId = this.props.id
-    console.log(userId)
+    const userId = localStorage.getItem('userID')
+    const token = localStorage.getItem('Authorization');
     return (
       <Query
+        context={{
+          headers: {
+            Authorization: token ? `Bearer ${token}` : ""
+          }
+        }}
         query={gql`
         {
             NotificationByUser(user: "${userId}"){
@@ -17,6 +22,8 @@ class UserNotifications extends React.Component {
               date
               type
               post_id
+              follower_name
+              content
             }
           }
         `}
@@ -24,8 +31,7 @@ class UserNotifications extends React.Component {
         {({ loading, error, data }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>Error :(</p>;
-            console.log(data)
-            return data.NotificationByUser.map((object) => <Noti user={object.follower} date={object.date} type={object.type} post={object.post_id}/>)
+            return data.NotificationByUser.map((object) => <Noti user={object.follower_name} date={object.date} type={object.type} post={object.content}/>)
         }}
         </Query>
     )

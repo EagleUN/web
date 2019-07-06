@@ -5,7 +5,7 @@ import UserNotifications from './UserNotifications';
 
 class Notifications extends React.Component {
   render () {
-    const userId = this.props.id || this.props.match.params.id
+    const userId = localStorage.getItem('userID')
     return (
       <div>
         <NavBar id={userId} />
