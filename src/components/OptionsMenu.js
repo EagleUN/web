@@ -26,7 +26,12 @@ const SimpleMenu = (props) => {
   function handleClose () {
     setAnchorEl(null)
   }
-  const userId = props.id
+
+  function closeSession(){
+    setAnchorEl(null)
+    localStorage.clear()
+    window.location.href="/";
+  }
   return (
     <div>
       <IconButton color='inherit' aria-label='Menu' aria-owns={anchorEl ? 'simple-menu' : undefined}
@@ -35,8 +40,8 @@ const SimpleMenu = (props) => {
         <MenuIcon />
       </IconButton>
       <Menu id='simple-menu' anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        <MenuItem className={classes.item} onClick={handleClose} component={Link} to={`/profile/${userId}`}>Profile</MenuItem>
-        <MenuItem className={classes.item} component={Link} to={'/'}onClick={handleClose}>Logout</MenuItem>
+        <MenuItem className={classes.item} onClick={handleClose} component={Link} to={`/profile`}>Profile</MenuItem>
+        <MenuItem className={classes.item} component={Link} to={'/'} onClick={closeSession}>Logout</MenuItem>
       </Menu>
     </div>
   )

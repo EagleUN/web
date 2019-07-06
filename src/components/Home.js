@@ -2,17 +2,30 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import HomePosts from './HomePosts'
 import NavBar from './NavBar'
+const Home = (props) => {
+	const userId = localStorage.getItem('userID')
 
-const Home = (props) => {  
-  const userId = props.id || props.match.params.id
-  return (
-    <div>
-      <NavBar id={userId}/>
-      <Grid container justify='center'>
-        <HomePosts id={userId}/>
-      </Grid>
-    </div>
-  )
+	function redireccionar(){
+	  	window.location.href="/";
+	} 
+
+	if (userId!==null) {
+		return (
+		    <div>
+		      <NavBar id={userId}/>
+		      <Grid container justify='center'>
+		      	<HomePosts id={userId}/>
+		      </Grid>
+		    </div>
+	  	)
+	}else{
+	setTimeout (redireccionar, 5000);
+		return(
+			<div>
+				loading...
+			</div>
+		)
+	}
 }
 
 export default Home

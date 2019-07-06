@@ -5,6 +5,8 @@ import UserInfo from './UserInfo'
 
 const UserInfoQueries = (props) => {  
   const userId = props.id
+  const token = localStorage.getItem('Authorization');
+
   const userQuery = gql`
     {
       userById(id: {id: "${userId}"}){
@@ -33,11 +35,29 @@ const UserInfoQueries = (props) => {
   `
 
   return (
-    <Query query={userQuery}>
+    <Query 
+      context={{
+        headers: {
+          Authorization: token ? `Bearer ${token}` : ""
+        }
+      }}
+      query={userQuery}>
       {({ loading: loadingOne, data: { userById  } }) => (
-        <Query query={followersQuery}>
+        <Query 
+          context={{
+            headers: {
+              Authorization: token ? `Bearer ${token}` : ""
+            }
+          }}
+          query={followersQuery}>
           {({ loading: loadingTwo, data: { followers  } }) => (
-            <Query query={followingQuery}>
+            <Query 
+              context={{
+                headers: {
+                  Authorization: token ? `Bearer ${token}` : ""
+                }
+              }}
+              query={followingQuery}>
               {({ loading: loadingThree, data: { following }}) => {
                 if (loadingOne || loadingTwo || loadingThree) return <span>Loading...</span>
                 return <UserInfo user={userById.name+ " "+userById.last_name} 

@@ -30,6 +30,7 @@ const UserCard = (props) => {
   const userId = props.userId
   const disabled = props.isFollowed
   const otherUser = props.otherUserId
+  const token = localStorage.getItem('Authorization');
 
   const CREATE_FOLLOW = gql`
     mutation {
@@ -63,13 +64,37 @@ const UserCard = (props) => {
 
         <CardActions disableSpacing>
           <Grid container justify='center'>
-            <Mutation mutation={CREATE_FOLLOW}>
-                {postMutation => <Button component={Link} to={`/home/${userId}`} disabled={disabled} variant='contained' className={classes.fab} onClick={postMutation}>
+            <Mutation mutation={CREATE_FOLLOW}
+              context={{
+                headers: {
+                  Authorization: token ? `Bearer ${token}` : ""
+                }
+              }}
+              onCompleted={
+                (data,errors) => {
+                  if(data!==null){
+                    window.location.reload()
+                  }
+                }
+              }>
+                {postMutation => <Button component={Link} to={`/home`} disabled={disabled} variant='contained' className={classes.fab} onClick={postMutation}>
                   Follow
               </Button>}
             </Mutation>
-            <Mutation mutation={DELETE_FOLLOW}>
-                {postMutation => <Button component={Link} to={`/home/${userId}`} disabled={!disabled} variant='contained' className={classes.fab} onClick={postMutation}>
+            <Mutation mutation={DELETE_FOLLOW}
+              context={{
+                headers: {
+                  Authorization: token ? `Bearer ${token}` : ""
+                }
+              }}
+              onCompleted={
+                (data,errors) => {
+                  if(data!==null){
+                    window.location.reload()
+                  }
+                }
+              }>
+                {postMutation => <Button component={Link} to={`/home`} disabled={!disabled} variant='contained' className={classes.fab} onClick={postMutation}>
                   Unfollow
               </Button>}
             </Mutation>

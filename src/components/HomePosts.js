@@ -5,9 +5,16 @@ import Post from './Post'
 
 class HomePosts extends React.Component {
   render() {
-    const userId = this.props.id
+    const userId = localStorage.getItem('userID')
+    const token = localStorage.getItem('Authorization')
+    
     return (
       <Query
+      context={{
+        headers: {
+          Authorization: token ? `Bearer ${token}` : ""
+        }
+      }}
         query={gql`
           {
             homeFeedForUser(id: "${userId}"){
