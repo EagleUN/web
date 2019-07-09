@@ -6,8 +6,14 @@ import ProfilePost from './ProfilePost';
 class ProfilePosts extends React.Component {  
   render(){
     const userId = localStorage.getItem('userID')
+    const token = localStorage.getItem('Authorization');
     return(
-      <Query
+      <Query 
+        context={{
+          headers: {
+            Authorization: token ? `Bearer ${token}` : ""
+          }
+        }}
         query={gql`
         {
             profileFeedForUser(id: "${userId}"){
