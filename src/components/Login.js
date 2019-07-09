@@ -25,7 +25,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Login = (props) => {  
+
+const Login = (props) => {
+
+  document.body.style = 'background: -webkit-linear-gradient(to left, #F53134, #FFFC52);  /* Chrome 10-25, Safari 5.1-6 */';
+  document.body.style = 'background: #fc4a1a;';
+  document.body.style = 'background: linear-gradient(to left, rgba(245,49,52,1), rgba(255,252,82,1));';
+
   const classes = useStyles()
   const [values, setValues] = React.useState({
     email: "",
@@ -49,73 +55,92 @@ const Login = (props) => {
     setValues({ ...values, [name]: event.target.value });
   };
   
-  return (
-    <div className="Login">
-      <img src={logo} className="App-logo" alt="logo" />
-      <Grid container justify='center'>
-          <form>  
-            <Grid>
-              <FormGroup size="large">
-                <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
-                  <FormLabel>Email</FormLabel>
-                </Typography>
-                <FormControl
-                  id="userEmail"
-                  label=""
-                  value={values.email}
-                  onChange={handleChange('email')}
-                  className={classes.textField}
-                  margin="normal"
-                  autoFocus="autofocus"
-                />
-              </FormGroup>
-            </Grid>
-            <Grid>
-              <FormGroup size="large">
-                <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
-                  <FormLabel>Password</FormLabel>
-                </Typography>
-                <FormControl
-                  id="userPassword"
-                  label=""
-                  type="password"
-                  value={values.password}
-                  onChange={handleChange('password')}
-                  className={classes.textField}
-                  margin="normal"/>
-              </FormGroup>
-            </Grid>
-          <Grid className="Botns" container>
-            <Mutation mutation={CREATE_TOKEN_SESSION}
-            onCompleted={
-              (data,errors) => {
-                if(data!==null){
-                  if(data.createNewUserSession.jwt !== "0"){
-                    localStorage.setItem("Authorization", data.createNewUserSession.jwt)
-                    localStorage.setItem("userID", data.createNewUserSession.id)
-                    window.location.reload()
+  const token = localStorage.getItem('Authorization')
+
+  function redireccionar(){
+      window.location.href="/home";
+  } 
+
+  if (token==null) {
+    return (
+      <div className="Login">
+        <img src={logo} className="App-logo" alt="logo" />
+        <Grid container justify='center'>
+            <form>  
+              <Grid>
+                <FormGroup size="large">
+                  <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
+                    <FormLabel>Email</FormLabel>
+                  </Typography>
+                  <FormControl
+                    id="userEmail"
+                    label=""
+                    value={values.email}
+                    onChange={handleChange('email')}
+                    className={classes.textField}
+                    margin="normal"
+                    autoFocus="autofocus"
+                  />
+                </FormGroup>
+              </Grid>
+              <Grid>
+                <FormGroup size="large">
+                  <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
+                    <FormLabel>Password</FormLabel>
+                  </Typography>
+                  <FormControl
+                    id="userPassword"
+                    label=""
+                    type="password"
+                    value={values.password}
+                    onChange={handleChange('password')}
+                    className={classes.textField}
+                    margin="normal"/>
+                </FormGroup>
+              </Grid>
+            <Grid className="Botns" container>
+              <Mutation mutation={CREATE_TOKEN_SESSION}
+              onCompleted={
+                (data,errors) => {
+                  if(data!==null){
+                    if(data.createNewUserSession.jwt !== "0"){
+                      localStorage.setItem("Authorization", data.createNewUserSession.jwt)
+                      localStorage.setItem("userID", data.createNewUserSession.id)
+                      window.location.reload()
+                    }
+                  } else {
+                    if(data.createNewUserSession.errors.message === "0"){
+                    }
                   }
-                } else {
-                  if(data.createNewUserSession.errors.message === "0"){
+                  if(errors[0].message===0){
+                    alert("error en inicio de sesion")
                   }
-                }
-                if(errors[0].message===0){
-                  alert("error en inicio de sesion")
                 }
               }
-            }
-            >
-              {postMutation => <Button component={Link} to={'/home'} variant='contained' aria-label='Add to favorites' className={classes.fab} onClick={postMutation}>
-                Submit
-              </Button>}
-            </Mutation>
-            <Button component={Link} to={'/signup'} variant='contained' aria-label='Add to favorites' className={classes.fab} >
-                Sign Up
-            </Button>
-          </Grid>
-        </form>
-      </Grid>  
-    </div>
-  )
+              >
+                {postMutation => <Button component={Link} to={'/home'} variant='contained' aria-label='Add to favorites' className={classes.fab} onClick={postMutation}>
+                  Submit
+                </Button>}
+              </Mutation>
+              <Button component={Link} to={'/signup'} variant='contained' aria-label='Add to favorites' className={classes.fab} >
+                  Sign Up
+              </Button>
+            </Grid>
+          </form>
+        </Grid>  
+      </div>
+    )
+  }else{
+  setTimeout (redireccionar, 5000);
+    return(
+      <div>
+        loading...
+      </div>
+    )
+  }
+
+
+
+    
 }
 export default Login

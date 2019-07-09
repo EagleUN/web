@@ -1,9 +1,6 @@
 .Login {
   padding: 60px 0;
   text-align: center;
-      background: -webkit-linear-gradient(to left, #F53134, #FFFC52);  /* Chrome 10-25, Safari 5.1-6 */
-  background: #fc4a1a;  /* fallback for old browsers */
-  background: linear-gradient(to left, #F53134, #FFFC52); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .Login form {
