@@ -31,7 +31,6 @@ const useStyles = makeStyles(theme => ({
 
 const ButtonAppBar = (props) => {
   const classes = useStyles()
-  const userId = props.id
   return (
     <div className={classes.root}>
       <AppBar position='static'>
@@ -44,7 +43,7 @@ const ButtonAppBar = (props) => {
             <Button className={classes.butns} color='inherit' component={Link} to={`/users`}>Users</Button>
           </div>
           <div className={classes.optionsButton}>
-            <OptionsMenu id={userId}/>
+            <OptionsMenu />
           </div>
         </Toolbar>
       </AppBar>

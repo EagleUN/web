@@ -10,6 +10,7 @@ import gql from 'graphql-tag'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
+import swal from '@sweetalert/with-react';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -73,11 +74,19 @@ const UserCard = (props) => {
               onCompleted={
                 (data,errors) => {
                   if(data!==null){
-                    window.location.reload()
+                    swal({
+                      title: "Following!",
+                      text: `You are now following ${user}!`,
+                      icon: "success",
+                      button: "Ok!",
+                    })
+                    .then((value)=>{
+                      window.location.reload()
+                    });
                   }
                 }
               }>
-                {postMutation => <Button component={Link} to={`/home`} disabled={disabled} variant='contained' className={classes.fab} onClick={postMutation}>
+                {postMutation => <Button disabled={disabled} variant='contained' className={classes.fab} onClick={postMutation}>
                   Follow
               </Button>}
             </Mutation>
@@ -90,11 +99,19 @@ const UserCard = (props) => {
               onCompleted={
                 (data,errors) => {
                   if(data!==null){
-                    window.location.reload()
+                    swal({
+                      title: "Unfollow success!",
+                      text: `You are not now following ${user}!`,
+                      icon: "success",
+                      button: "Ok!",
+                    })
+                    .then((value)=>{
+                      window.location.reload()
+                    });
                   }
                 }
               }>
-                {postMutation => <Button component={Link} to={`/home`} disabled={!disabled} variant='contained' className={classes.fab} onClick={postMutation}>
+                {postMutation => <Button disabled={!disabled} variant='contained' className={classes.fab} onClick={postMutation}>
                   Unfollow
               </Button>}
             </Mutation>

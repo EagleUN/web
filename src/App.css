@@ -29,6 +29,35 @@
   color: #61dafb;
 }
 
+.MuiGrid-container {
+  display: inline-grid !important;
+}
+
+.swal-overlay {
+  background-color: rgba(55, 55, 255, 0.1);
+}
+
+.swal-button {
+  background: #f85032;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #e73827, #f85032);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #e73827, #f85032); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border: 1px solid #3e549a;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.swal-button--cancel{
+  background: #f85032;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #7D7D7D, #DADADA);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #7D7D7D, #9F9F9F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
+h1{
+  padding: 0;
+  margin: 10px 0px 0px 0px;
+  font-size: 50px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

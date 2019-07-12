@@ -5,6 +5,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { Link } from 'react-router-dom'
+import swal from '@sweetalert/with-react';
 
 const useStyles = makeStyles(theme => ({
   item: {
@@ -29,8 +30,29 @@ const SimpleMenu = (props) => {
 
   function closeSession(){
     setAnchorEl(null)
-    localStorage.clear()
-    window.location.href="/";
+    swal({
+      title: "Are you sure you want to close your session?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Your session has been closed!", {
+          icon: "success",
+        })
+        .then((value) =>{
+          localStorage.clear()
+          window.location.reload()
+          window.location.assign('/')
+        });
+      } else {
+        swal("Your session is still open", {
+          icon: "info",
+        });
+      }
+    });
+
   }
   return (
     <div>
@@ -41,7 +63,7 @@ const SimpleMenu = (props) => {
       </IconButton>
       <Menu id='simple-menu' anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem className={classes.item} onClick={handleClose} component={Link} to={`/profile`}>Profile</MenuItem>
-        <MenuItem className={classes.item} component={Link} to={'/'} onClick={closeSession}>Logout</MenuItem>
+        <MenuItem className={classes.item} onClick={closeSession}>Logout</MenuItem>
       </Menu>
     </div>
   )

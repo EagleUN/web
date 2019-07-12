@@ -11,9 +11,7 @@ class Profile extends React.Component {
       userId = this.props.match.params.id
     }else{
       userId = localStorage.getItem('userID')
-      console.log("Entroo")
     }
-    console.log(userId)
 
     return (
       <div>

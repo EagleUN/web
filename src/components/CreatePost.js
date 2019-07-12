@@ -9,6 +9,8 @@ import AddIcon from '@material-ui/icons/Add';
 import { Link } from 'react-router-dom'
 import NavBar from './NavBar'
 import { Typography } from '@material-ui/core';
+import swal from '@sweetalert/with-react';
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -47,12 +49,9 @@ const CreatePost = (props) => {
   
   const getElementToRender = () => {
     if(contenido !== ""){
-      return  <Typography className={classes.typo} variant='body2' color='textSecondary' component='p'>{contenido}</Typography>      
+      return  <Typography className={classes.typo} variant='body2' color='textSecondary' component='p'>{contenido}</Typography>
     } else{
-      return  <Link to={{
-          pathname: `/addMusicLists`,
-          id: idCreator
-        }}>Get Music List</Link>
+      return  <Button variant='contained' aria-label='Add to favorites' className={classes.fab} component={Link} to={{pathname: `/addMusicLists`, id: idCreator}}>Get Music List</Button>
     }
   }
 
@@ -69,6 +68,7 @@ const CreatePost = (props) => {
             onChange={handleChange('content')}
             className={classes.textField}
             margin="normal"
+            required
           />
       </Grid>
       <Grid container justify='center'>
@@ -77,15 +77,30 @@ const CreatePost = (props) => {
             headers: {
               Authorization: token ? `Bearer ${token}` : ""
             }
-          }} 
+          }}
+          onError={
+            (errors)=>{
+              if(errors){
+                return <div alert={swal("Wrong creation post!", "The post can not be empty", "error")} />
+              }
+            }
+          }
           onCompleted={
             (data,errors) => {
               if(data!==null){
-                window.location.reload()
+                swal({
+                  title: "Posted!",
+                  text: "Your post has been created!",
+                  icon: "success",
+                  button: "Ok!",
+                })
+                .then((value)=>{
+                  window.location.assign('/home')
+                });
               }
             }
           }>
-          {postMutation => <Fab component={Link} to={`/home`} className={classes.fab} onClick={postMutation}>
+          {postMutation => <Fab className={classes.fab} onClick={postMutation}>
             <AddIcon /> 
           </Fab>}
         </Mutation>        

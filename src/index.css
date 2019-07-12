@@ -16,3 +16,12 @@ code {
 #root .MuiAppBar-colorPrimary{
 	background-color: #0b4f6c;
 }
+
+.spinner {
+  background-color: linear-gradient(to left, rgba(45,49,52,0.7), rgba(55,52,82,0.7)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;
+  margin: 50px;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

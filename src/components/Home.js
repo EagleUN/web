@@ -2,6 +2,8 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import HomePosts from './HomePosts'
 import NavBar from './NavBar'
+import Loading from './Loading'
+
 const Home = (props) => {
 	const userId = localStorage.getItem('userID')
 
@@ -22,7 +24,7 @@ const Home = (props) => {
 	setTimeout (redireccionar, 5000);
 		return(
 			<div>
-				loading...
+				<Loading />
 			</div>
 		)
 	}
