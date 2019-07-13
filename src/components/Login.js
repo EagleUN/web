@@ -1,21 +1,18 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
-import { Link } from 'react-router-dom'
-import Typography from '@material-ui/core/Typography'
-import { Button } from '@material-ui/core'
-import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import "./Login.css";
-import logo from './../eagle.svg'
-import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import { Mutation } from 'react-apollo'
+import { makeStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom'
+import { FormControl, FormLabel } from "react-bootstrap";
+import logo from './../eagle.svg'
+import Loading from './Loading'
+import swal from '@sweetalert/with-react';
+import "./Login.css";
 
 const useStyles = makeStyles(theme => ({
-  textField: {
-    marginLeft: 30,
-    marginRight: 30,
-    width: 280,
-  },
   fab: {
     marginTop: 20,
     marginLeft: 20
@@ -58,75 +55,83 @@ const Login = (props) => {
   const token = localStorage.getItem('Authorization')
 
   function redireccionar(){
-      window.location.href="/home";
-  } 
+    window.location.href="/home";
+  }
 
   if (token==null) {
     return (
-      <div className="Login">
+      <div className="Login"
+        onKeyPress={event => {
+          if (event.key === "Enter") {
+            document.getElementById("loginBtn").click();
+          }
+        }}
+        >
+        <div>
+          <h1>Eagle UN</h1>
+        </div>
         <img src={logo} className="App-logo" alt="logo" />
         <Grid container justify='center'>
-            <form>  
-              <Grid>
-                <FormGroup size="large">
-                  <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
-                    <FormLabel>Email</FormLabel>
-                  </Typography>
-                  <FormControl
-                    id="userEmail"
-                    label=""
-                    value={values.email}
-                    onChange={handleChange('email')}
-                    className={classes.textField}
-                    margin="normal"
-                    autoFocus="autofocus"
-                  />
-                </FormGroup>
-              </Grid>
-              <Grid>
-                <FormGroup size="large">
-                  <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
-                    <FormLabel>Password</FormLabel>
-                  </Typography>
-                  <FormControl
-                    id="userPassword"
-                    label=""
-                    type="password"
-                    value={values.password}
-                    onChange={handleChange('password')}
-                    className={classes.textField}
-                    margin="normal"/>
-                </FormGroup>
-              </Grid>
-            <Grid className="Botns" container>
-              <Mutation mutation={CREATE_TOKEN_SESSION}
-              onCompleted={
-                (data,errors) => {
-                  if(data!==null){
-                    if(data.createNewUserSession.jwt !== "0"){
-                      localStorage.setItem("Authorization", data.createNewUserSession.jwt)
-                      localStorage.setItem("userID", data.createNewUserSession.id)
-                      window.location.reload()
-                    }
-                  } else {
-                    if(data.createNewUserSession.errors.message === "0"){
-                    }
-                  }
-                  if(errors[0].message===0){
-                    alert("error en inicio de sesion")
+          <Grid>
+            <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
+              <FormLabel>Email</FormLabel>
+            </Typography>
+            <FormControl
+              id="userEmail"
+              label=""
+              value={values.email}
+              onChange={handleChange('email')}
+              className={classes.textField}
+              margin="normal"
+              placeholder="Enter email"
+              autoFocus="autofocus"
+            />
+          </Grid>
+          <Grid>
+            <Typography className={classes.typo} variant='body2' color='textPrimary' component='p'>
+              <FormLabel>Password</FormLabel>
+            </Typography>
+            <FormControl
+              id="userPassword"
+              label=""
+              type="password"
+              value={values.password}
+              onChange={handleChange('password')}
+              className={classes.textField}
+              margin="normal"
+              placeholder="Password"
+            />
+          </Grid>
+        </Grid>
+        <Grid container justify='center'>
+          <Mutation mutation={CREATE_TOKEN_SESSION}
+            onError={
+              (errors)=>{
+                if(errors){
+                  return <div alert={swal("Wrong login!", "Bad credentials", "error")} />
+                }
+              }
+            }
+            onCompleted={
+              (data) => {
+                if(data!==null){
+                  if(data.createNewUserSession.jwt !== "0"){
+                    localStorage.setItem("Authorization", data.createNewUserSession.jwt)
+                    localStorage.setItem("userID", data.createNewUserSession.id)
+                    window.location.assign("/home")
+                    window.location.reload()
                   }
                 }
               }
-              >
-                {postMutation => <Button component={Link} to={'/home'} variant='contained' aria-label='Add to favorites' className={classes.fab} onClick={postMutation}>
-                  Submit
-                </Button>}
-              </Mutation>
-              <Button component={Link} to={'/signup'} variant='contained' aria-label='Add to favorites' className={classes.fab} >
-                  Sign Up
-              </Button>
-            </Grid>
-          </form>
+            }
+          >
+            {postMutation => <Button id="loginBtn" variant='contained' aria-label='Add to favorites' className={classes.fab} onClick={postMutation}>
+              Login
+            </Button>}
+          </Mutation>
+          <Button id="loginBtn2" component={Link} to={'/signup'} variant='contained' aria-label='Add to favorites' className={classes.fab} >
+            Sign Up
+          </Button>
         </Grid>  
       </div>
     )
@@ -134,13 +139,9 @@ const Login = (props) => {
   setTimeout (redireccionar, 5000);
     return(
       <div>
-        loading...
+        <Loading />
       </div>
     )
   }
-
-
-
-    
 }
 export default Login

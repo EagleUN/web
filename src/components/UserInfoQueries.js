@@ -59,7 +59,7 @@ const UserInfoQueries = (props) => {
               }}
               query={followingQuery}>
               {({ loading: loadingThree, data: { following }}) => {
-                if (loadingOne || loadingTwo || loadingThree) return <span>Loading...</span>
+                if (loadingOne || loadingTwo || loadingThree) return <span> </span>
                 return <UserInfo user={userById.name+ " "+userById.last_name} 
                                 email={userById.email} followers={followers.count}
                                 following={following.count} />

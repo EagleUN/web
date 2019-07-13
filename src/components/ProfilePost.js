@@ -23,7 +23,7 @@ const ProfilePost = (props) => {
   const date = props.date
   const content = props.content
   return (
-    <Card className={classes.card}>
+    <Card className="postStyle">
       <CardHeader
         avatar={
           <Avatar className={classes.avatar} aria-label='Recipe'>

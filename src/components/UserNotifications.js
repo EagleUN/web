@@ -2,6 +2,7 @@ import React from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import Noti from './Noti'
+import Loading from './Loading'
 
 class UserNotifications extends React.Component {
   render() {
@@ -29,7 +30,7 @@ class UserNotifications extends React.Component {
         `}
       >
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
+          if (loading) return <Loading />;
           if (error) return <p>Error :(</p>;
             return data.NotificationByUser.map((object) => <Noti user={object.follower_name} date={object.date} type={object.type} post={object.content}/>)
         }}

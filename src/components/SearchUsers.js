@@ -2,6 +2,7 @@ import React from 'react'
 import UserCard from './UserCard'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
+import Loading from './Loading'
 
 const SearchUsers = (props) => {
   const userId = props.id
@@ -29,7 +30,7 @@ const SearchUsers = (props) => {
         `}
       >
       {({ loading, error, data }) => {
-        if (loading) return <p>Loading...</p>;
+        if (loading) return <Loading />;
         if (error) return <p>Error :(</p>;
           return data.userList.otherUsers.map((object) => <UserCard key={object.id} otherUserId={object.id} userId={userId} isFollowed={object.iFollow} user={object.name+" "+object.lastName} />)
       }}

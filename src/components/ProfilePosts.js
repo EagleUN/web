@@ -2,12 +2,15 @@ import React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import ProfilePost from './ProfilePost';
+import Loading from './Loading'
 
 class ProfilePosts extends React.Component {  
   render(){
-    const userId = localStorage.getItem('userID')
+    const userId = this.props.id
     const token = localStorage.getItem('Authorization');
     return(
+      console.log("el id de prueba:"),
+      console.log(userId),
       <Query 
         context={{
           headers: {
@@ -26,7 +29,7 @@ class ProfilePosts extends React.Component {
         `}
       >
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
+          if (loading) return <Loading />;
           if (error) return <p>Error :(</p>;
             return data.profileFeedForUser.map((object) => <ProfilePost key={object.id} user={object.idCreator} date={object.createdAt} content={object.content}/>)
         }}

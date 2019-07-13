@@ -8,7 +8,7 @@ class Notifications extends React.Component {
     const userId = localStorage.getItem('userID')
     return (
       <div>
-        <NavBar id={userId} />
+        <NavBar state2="navS" id={userId} />
         <Grid container justify='center'>
           <UserNotifications id={userId}/>
         </Grid>

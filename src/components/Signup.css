@@ -1,16 +1,19 @@
 .Signup {
-  padding: 60px 0;
+  padding: 0;
+  margin: 0;
   text-align: center;
 }
 
-.Signup form {
-  margin: 0 auto;
-  max-width: 320px;
+.Signup #btnSingUp{
+	width: 222px;
+	margin: 50px;
 }
 
-
-.Signup form span.help-block {
-  font-size: 14px;
-  padding-bottom: 10px;
-  color: #999;
+@media (min-width: 500px) {
+	.Signup Input{
+		width: 400px;
+	}
+	.Signup #btnSingUp{
+		width: 400px;
+	}
 }

@@ -24,27 +24,28 @@ const useStyles = makeStyles(theme => ({
   butns: {
     color: "white",
     '&:hover': {
-      color: "orange"
+      color: "white",
+      background: "gray",
+      radio: 20,
     }
   }
 }))
 
 const ButtonAppBar = (props) => {
   const classes = useStyles()
-  const userId = props.id
   return (
     <div className={classes.root}>
       <AppBar position='static'>
         <Toolbar>
           <div className={classes.botns}>
             <img src={logo} className="App-logo-nav" alt="logo" />
-            <Button className={classes.butns} color='inherit' component={Link} to={`/home`}>Home</Button>
-            <Button className={classes.butns} color='inherit' component={Link} to={`/notifications`}>Notifications</Button>
-            <Button className={classes.butns} color='inherit' component={Link} to={`/post`}>New post</Button>
-            <Button className={classes.butns} color='inherit' component={Link} to={`/users`}>Users</Button>
+            <Button className={'navBtns '+props.state1} color='inherit' component={Link} to={`/home`}>Home</Button>
+            <Button className={'navBtns '+props.state2} color='inherit' component={Link} to={`/notifications`}>Notifications</Button>
+            <Button className={'navBtns '+props.state3} color='inherit' component={Link} to={`/post`}>New post</Button>
+            <Button className={'navBtns '+props.state4} color='inherit' component={Link} to={`/users`}>Users</Button>
           </div>
           <div className={classes.optionsButton}>
-            <OptionsMenu id={userId}/>
+            <OptionsMenu />
           </div>
         </Toolbar>
       </AppBar>

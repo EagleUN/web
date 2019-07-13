@@ -2,6 +2,7 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import SearchUsers from './SearchUsers'
 import NavBar from './NavBar'
+import Loading from './Loading'
 
 const AllUsers = (props) => {
   	const userId = localStorage.getItem('userID');
@@ -13,7 +14,7 @@ const AllUsers = (props) => {
 	if (userId!==null) {
 		return (
 		    <div>
-		      <NavBar id={userId}/>
+		      <NavBar state4="navS" />
 		      <Grid container justify='center'>
 		        <SearchUsers id={userId} />
 		      </Grid>
@@ -23,7 +24,7 @@ const AllUsers = (props) => {
 	setTimeout (redireccionar, 5000);
 		return(
 			<div>
-				loading...
+				<Loading />
 			</div>
 		)
 	}
