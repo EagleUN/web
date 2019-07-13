@@ -13,11 +13,6 @@ import swal from '@sweetalert/with-react';
 import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles(theme => ({
-  textField: {
-    marginLeft: 30,
-    marginRight: 30,
-    width: 500,
-  },
   fab: {
     marginTop: 20,
   },
@@ -57,7 +52,7 @@ const CreatePost = (props) => {
 
   return (
     <div>
-      <NavBar id={idCreator}/>
+      <NavBar state3="navS" id={idCreator}/>
       <Grid container justify='center'>
         <TextField
             id="userInputMultiline"
@@ -66,7 +61,7 @@ const CreatePost = (props) => {
             rowsMax="4"
             value={content.content}                     
             onChange={handleChange('content')}
-            className={classes.textField}
+            className="newPost"
             margin="normal"
             required
           />
@@ -100,7 +95,7 @@ const CreatePost = (props) => {
               }
             }
           }>
-          {postMutation => <Fab className={classes.fab} onClick={postMutation}>
+          {postMutation => <Fab type="button" disabled={!content.content} className={classes.fab} onClick={postMutation}>
             <AddIcon /> 
           </Fab>}
         </Mutation>        

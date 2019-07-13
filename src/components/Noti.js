@@ -8,10 +8,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import red from '@material-ui/core/colors/red'
 
 const useStyles = makeStyles(theme => ({
-  card: {
-    width: 700,
-    margin: 20
-  },
   avatar: {
     backgroundColor: red[500]
   }
@@ -25,7 +21,7 @@ const Noti = (props) => {
   const post_id = props.post
 
   return (
-    <Card className={classes.card}>
+    <Card className="postStyle">
       <CardHeader
         avatar={
           <Avatar className={classes.avatar} aria-label='Recipe'>

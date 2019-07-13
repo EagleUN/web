@@ -9,12 +9,12 @@ const Home = (props) => {
 
 	function redireccionar(){
 	  	window.location.href="/";
-	} 
+	}
 
 	if (userId!==null) {
 		return (
 		    <div>
-		      <NavBar id={userId}/>
+		      <NavBar state1="navS" id={userId}/>
 		      <Grid container justify='center'>
 		      	<HomePosts id={userId}/>
 		      </Grid>

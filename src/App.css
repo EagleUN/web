@@ -58,6 +58,98 @@ h1{
   font-size: 50px;
 }
 
+.userStyle{
+  width: 400px;
+  margin: 20px;
+}
+
+.userStyle button, .userStyle a{
+  width: 300px;
+  margin: 10px;
+}
+
+@media (max-width: 440px) {
+  .userStyle{
+    width: 200px;
+    margin: 20px;
+  }
+  .userStyle button, .userStyle a{
+    width: 150px;
+    margin: 10px;
+  }
+}
+
+hr.separator{
+  width: 95%;
+  border: 0; 
+  height: 1px; 
+  background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
+  background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+  background-image: -webkit-linear-gradient(left, rgba(240,240,240,0.1), rgba(180,180,180,0.9), rgba(123,123,123,1), rgba(180,180,180,0.9), rgba(240,240,240,0.1));
+}
+
+.newPost{
+  marginLeft: 30px;
+  marginRight: 30px;
+  width: 500px;
+}
+
+
+@media (max-width: 440px) {
+  .newPost{
+    width: 250px;
+    marginLeft: 30px;
+    marginRight: 30px;
+  }
+}
+
+.profileStyle{
+  margin: 20px;
+  width: 400px;
+}
+
+
+@media (max-width: 440px) {
+  .profileStyle{
+    margin: 20px;
+    width: 300px;
+  }
+}
+
+.postStyle{
+  margin: 20px;
+  width: 650px;
+}
+
+
+@media (max-width: 670px) {
+  .postStyle{
+    margin: 20px;
+    width: 300px;
+  }
+}
+
+.navBtns{
+  color: white !important;
+  border-radius: 20px !important;
+}
+.navBtns:hover {
+  color: white;
+  background: rgba(41,109,138,0.5) !important;
+  border-radius: 20px !important;
+}
+
+.navS{
+  background: rgba(206,121,72,0.5) !important;
+  border-radius: 20px !important;
+}
+.navS:hover {
+  color: white;
+  background: rgba(206,121,72,0.5) !important;
+  border-radius: 20px !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

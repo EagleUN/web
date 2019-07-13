@@ -14,7 +14,7 @@ const AllUsers = (props) => {
 	if (userId!==null) {
 		return (
 		    <div>
-		      <NavBar />
+		      <NavBar state4="navS" />
 		      <Grid container justify='center'>
 		        <SearchUsers id={userId} />
 		      </Grid>

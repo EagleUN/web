@@ -13,10 +13,6 @@ import { Link } from 'react-router-dom'
 import swal from '@sweetalert/with-react';
 
 const useStyles = makeStyles(theme => ({
-  card: {
-    width: 400,
-    margin: 20
-  },
   avatar: {
     backgroundColor: red[500]
   },
@@ -52,7 +48,7 @@ const UserCard = (props) => {
 
   return (
     <Grid container justify='center'>
-      <Card className={classes.card}>
+      <Card className='userStyle'>
         <CardHeader
           avatar={
             <Avatar className={classes.avatar} aria-label='Recipe'>

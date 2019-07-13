@@ -14,10 +14,6 @@ import gql from 'graphql-tag'
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
-  card: {
-    width: 700,
-    margin: 20
-  },
   avatar: {
     backgroundColor: red[500]
   }
@@ -45,7 +41,7 @@ const Post = (props) => {
   `;
 
   return (
-    <Card className={classes.card}>
+    <Card className="postStyle">
       <CardHeader
         avatar={
           <Avatar className={classes.avatar} aria-label='Recipe'>

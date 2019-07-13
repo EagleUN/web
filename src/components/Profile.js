@@ -19,6 +19,7 @@ class Profile extends React.Component {
         <Grid container justify='center'>
           <UserInfoQueries id={userId}/>
         </Grid>
+        <hr className="separator" />
         <Grid container justify='center'>
           <ProfilePosts id={userId} />
         </Grid>

@@ -9,10 +9,6 @@ import Typography from '@material-ui/core/Typography'
 import CardContent from '@material-ui/core/CardContent'
 
 const styles = theme => ({
-  card: {
-    width: 400,
-    margin: 20
-  },
   avatar: {
     backgroundColor: red[500]
   }
@@ -22,7 +18,7 @@ class UserInfo extends React.Component {
   render() {
     const { classes } = this.props
     return (
-      <Card className={classes.card}>
+      <Card className="profileStyle">
         <CardHeader
           avatar = {
             <Avatar className={classes.avatar} aria-label='Recipe'>

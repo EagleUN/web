@@ -5,6 +5,7 @@ import Post from './Post'
 import Loading from './Loading'
 
 class HomePosts extends React.Component {
+  
   render() {
     const userId = localStorage.getItem('userID')
     const token = localStorage.getItem('Authorization')
@@ -36,4 +37,5 @@ class HomePosts extends React.Component {
     )
   }
 }
+
 export default HomePosts;

@@ -9,6 +9,8 @@
     "@sweetalert/with-react": "^0.1.1",
     "apollo-boost": "^0.4.0",
     "apollo-link-context": "^1.0.18",
+    "axios": "^0.19.0",
+    "firebase": "^6.2.4",
     "graphql": "^14.3.1",
     "graphql-tag": "^2.10.1",
     "jss-theme-reactor": "^0.11.1",
@@ -42,6 +44,34 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "module:metro-react-native-babel-preset"
+    ],
+    "env": {
+      "production": {}
+    },
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "transform-inline-environment-variables",
+        {
+          "include": [
+            "NODE_ENV",
+            "API"
+          ]
+        }
+      ],
+      [
+        "@babel/plugin-proposal-optional-catch-binding"
+      ]
     ]
   }
 }
