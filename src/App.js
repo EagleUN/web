@@ -13,7 +13,7 @@ import SignUp from './components/SignUp'
 import AddMusic from './components/AddMusic'
 
 const client = new ApolloClient({
-  uri: 'http://35.232.95.82/graphql'
+  uri: 'http://35.209.23.230:8081/graphql'
 })
 
 function App () {
