@@ -83,7 +83,7 @@ const Login = (props) => {
               onChange={handleChange('email')}
               className={classes.textField}
               margin="normal"
-              placeholder="Enter email"
+              placeholder="Enter username or email"
               autoFocus="autofocus"
             />
           </Grid>
