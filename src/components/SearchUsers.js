@@ -21,7 +21,7 @@ const SearchUsers = (props) => {
               otherUsers{
                 name
                 lastName
-                uuid
+                id
                 followsMe
                 iFollow
               }
@@ -32,7 +32,7 @@ const SearchUsers = (props) => {
       {({ loading, error, data }) => {
         if (loading) return <Loading />;
         if (error) return <p>Error :(</p>;
-          return data.userList.otherUsers.map((object) => <UserCard key={object.uuid} otherUserId={object.uuid} userId={userId} isFollowed={object.iFollow} user={object.name+" "+object.lastName} />)
+          return data.userList.otherUsers.map((object) => <UserCard key={object.id} otherUserId={object.id} userId={userId} isFollowed={object.iFollow} user={object.name+" "+object.lastName} />)
       }}
     </Query>
   )
