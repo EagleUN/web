@@ -21,7 +21,7 @@ const SearchUsers = (props) => {
               otherUsers{
                 name
                 lastName
-                id
+                uuid
                 followsMe
                 iFollow
               }
